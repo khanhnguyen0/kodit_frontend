@@ -46,6 +46,7 @@
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.0",
+    "react-leaflet": "^2.3.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "5.0.0-alpha.9",
@@ -72,7 +73,9 @@
   "rekit": {
     "devPort": 6075,
     "studioPort": 6076,
-    "plugins": ["redux-saga"],
+    "plugins": [
+      "redux-saga"
+    ],
     "css": "less"
   },
   "jest": {
