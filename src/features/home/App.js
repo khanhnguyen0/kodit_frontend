@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 
 /*
   This is the root component of your app. Here you define the overall layout
