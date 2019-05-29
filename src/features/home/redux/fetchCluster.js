@@ -71,6 +71,7 @@ export function reducer(state, action) {
         clusters: action.data.records,
         fetchClusterPending: false,
         fetchClusterError: null,
+        displayBottomBar: true,
       };
 
     case HOME_FETCH_CLUSTER_FAILURE:

@@ -11,7 +11,6 @@ export default class MapCluster extends Component {
   };
 
   openPopover(marker, event) {
-    console.log(marker);
     this.setState({
       anchorEl: event.currentTarget,
       selectedApartment: marker,

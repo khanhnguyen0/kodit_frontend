@@ -1,10 +1,14 @@
 import initialState from './initialState';
 import { reducer as getClusterIdReducer } from './getClusterId';
 import { reducer as fetchClusterReducer } from './fetchCluster';
+import { reducer as openBottomBarReducer } from './openBottomBar';
+import { reducer as closeBottomBarReducer } from './closeBottomBar';
 
 const reducers = [
   getClusterIdReducer,
   fetchClusterReducer,
+  openBottomBarReducer,
+  closeBottomBarReducer,
 ];
 
 export default function reducer(state = initialState, action) {

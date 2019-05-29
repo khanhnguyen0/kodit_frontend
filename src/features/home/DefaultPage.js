@@ -7,18 +7,24 @@ import * as actions from './redux/actions';
 import SideBar from './SideBar';
 import ClusterSelect from './ClusterSelect';
 import MapCluster from './MapCluster';
+import BottomBar from './BottomBar';
+import PriceHistogram from './PriceHistogram';
+import NavigationIcon from '@material-ui/icons/Navigation';
+import IconButton from '@material-ui/core/IconButton';
 
 export class DefaultPage extends Component {
   static propTypes = {
     home: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
+
   componentDidMount() {
     this.props.actions.getClusterId();
   }
 
   render() {
-    const { clusterIds, clusters } = this.props.home;
+    const { clusterIds, clusters, displayBottomBar } = this.props.home;
+    const { closeBottomBar } = this.props.actions;
     return (
       <div className="home-default-page">
         <div>
@@ -30,6 +36,19 @@ export class DefaultPage extends Component {
               />
             )}
           </SideBar>
+          {clusters && (
+            <BottomBar open={displayBottomBar}>
+              <IconButton
+                aria-label="Minimize"
+                size="medium"
+                className="rotate-180"
+                onClick={closeBottomBar}
+              >
+                <NavigationIcon fontSize="inherit" />
+              </IconButton>
+              <PriceHistogram clusters={clusters} />
+            </BottomBar>
+          )}
           <MapComponent>{clusters && <MapCluster clusters={clusters} />}</MapComponent>
         </div>
       </div>
