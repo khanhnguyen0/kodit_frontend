@@ -5,7 +5,9 @@ import {
   HOME_GET_CLUSTER_ID_SUCCESS,
   HOME_GET_CLUSTER_ID_FAILURE,
   HOME_GET_CLUSTER_ID_DISMISS_ERROR,
+  API
 } from './constants';
+import axios from 'axios';
 
 export function getClusterId() {
   // If need to pass args to saga, pass it with the begin action.
@@ -26,7 +28,7 @@ export function* doGetClusterId() {
   let res;
   try {
     // Do Ajax call or other async request here. delay(20) is just a placeholder.
-    res = yield call(delay, 20);
+    res = res = yield call(axios, `${API}/cluster/ids/`);
   } catch (err) {
     yield put({
       type: HOME_GET_CLUSTER_ID_FAILURE,
@@ -37,7 +39,7 @@ export function* doGetClusterId() {
   // Dispatch success action out of try/catch so that render errors are not catched.
   yield put({
     type: HOME_GET_CLUSTER_ID_SUCCESS,
-    data: res,
+    data: res.data,
   });
 }
 
@@ -65,6 +67,7 @@ export function reducer(state, action) {
     case HOME_GET_CLUSTER_ID_SUCCESS:
       return {
         ...state,
+        ...action.data,
         getClusterIdPending: false,
         getClusterIdError: null,
       };
