@@ -6,3 +6,4 @@ export { default as ClusterSelect } from './ClusterSelect';
 export { default as MapCluster } from './MapCluster';
 export { default as BuildingPopover } from './BuildingPopover';
 export { default as BuildingProfile } from './BuildingProfile';
+export { default as ApartmentProfile } from './ApartmentProfile';

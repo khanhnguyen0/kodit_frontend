@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Popover from '@material-ui/core/Popover';
 import Paper from '@material-ui/core/Paper';
-
+import BuildingProfile from './BuildingProfile';
 
 export default class BuildingPopover extends Component {
   static propTypes = {};
 
   render() {
-    const { id, open, anchorEl, handleClose } = this.props;
+    const { id, open, anchorEl, handleClose, selectedApartment } = this.props;
     return (
       <Popover
         id={id}
@@ -23,7 +23,7 @@ export default class BuildingPopover extends Component {
           horizontal: 'center',
         }}
       >
-        <Paper>Building profile</Paper>
+        <BuildingProfile {...selectedApartment} />
       </Popover>
     );
   }
