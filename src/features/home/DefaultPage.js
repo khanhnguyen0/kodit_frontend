@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import MapView from './MapView';
+import MapComponent from './MapComponent';
 import * as actions from './redux/actions';
-import AppBar from '@material-ui/core/AppBar';
-import Drawer from '@material-ui/core/Drawer';
+import SideBar from './SideBar';
 
 export class DefaultPage extends Component {
   static propTypes = {
     home: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
+  componentDidMount() {
+    this.props.actions.getClusterId();
+  }
 
   render() {
     return (
       <div className="home-default-page">
         <div>
-          <Drawer variant="permanent" anchor="left" className="sidebar">
-          </Drawer>
-          <MapView />
+        <SideBar />
+          <MapComponent />
         </div>
       </div>
     );
