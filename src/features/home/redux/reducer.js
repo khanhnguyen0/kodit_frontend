@@ -1,6 +1,8 @@
 import initialState from './initialState';
+import { reducer as getClusterIdReducer } from './getClusterId';
 
 const reducers = [
+  getClusterIdReducer,
 ];
 
 export default function reducer(state = initialState, action) {
