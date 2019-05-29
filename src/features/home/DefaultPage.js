@@ -6,6 +6,7 @@ import MapComponent from './MapComponent';
 import * as actions from './redux/actions';
 import SideBar from './SideBar';
 import ClusterSelect from './ClusterSelect';
+import MapCluster from './MapCluster';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -17,15 +18,19 @@ export class DefaultPage extends Component {
   }
 
   render() {
+    const { clusterIds, clusters } = this.props.home;
     return (
       <div className="home-default-page">
         <div>
           <SideBar>
-            {this.props.home.clusterIds && (
-              <ClusterSelect clusterIds={this.props.home.clusterIds} fetchCluster={this.props.actions.fetchCluster}/>
+            {clusterIds && (
+              <ClusterSelect
+                clusterIds={clusterIds}
+                fetchCluster={this.props.actions.fetchCluster}
+              />
             )}
           </SideBar>
-          <MapComponent />
+          <MapComponent>{clusters && <MapCluster clusters={clusters} />}</MapComponent>
         </div>
       </div>
     );

@@ -10,7 +10,7 @@ export default class MapComponent extends Component {
     },
   };
   onViewportChange = viewport => {
-    const { width, height, ...etc } = viewport;
+    const { height, ...etc } = viewport;
     this.setState({ viewport: etc });
   };
 
@@ -22,7 +22,9 @@ export default class MapComponent extends Component {
         mapboxApiAccessToken="pk.eyJ1Ijoia2hhbmgtbmd1eWVuIiwiYSI6ImNqdzh2MjhjcDBhMWI0YW14cDYyaXQ5cnEifQ.uih5m0Vt-aPZHXlRCT7K8A"
         {...this.state.viewport}
         onViewportChange={viewport => this.setState({ viewport })}
-      />
+      >
+        {this.props.children}
+      </ReactMapGL>
     );
   }
 }
