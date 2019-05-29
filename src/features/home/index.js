@@ -4,3 +4,4 @@ export { default as MapComponent } from './MapComponent';
 export { default as SideBar } from './SideBar';
 export { default as ClusterSelect } from './ClusterSelect';
 export { default as MapCluster } from './MapCluster';
+export { default as BuildingPopover } from './BuildingPopover';
