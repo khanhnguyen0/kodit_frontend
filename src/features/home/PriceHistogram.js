@@ -19,8 +19,8 @@ export default class PriceHistogram extends Component {
     const { clusters } = this.props;
     const prices = clusters.map(c => c.price);
     return (
-      <div className="home-price-histogram">
       <ResponsiveHistogram
+        className="home-price-histogram"
         ariaLabel="My histogram of ..."
         orientation="vertical"
         cumulative={false}
@@ -52,7 +52,6 @@ export default class PriceHistogram extends Component {
         <XAxis />
         <YAxis />
       </ResponsiveHistogram>
-      </div>
     );
   }
 }
