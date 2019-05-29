@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import ApartmentProfile from './ApartmentProfile';
+import uniqid from 'uniqid'
 
 const mergeArray = (living_area_sqm, price_sqm) => {
   let mergedArray = [];
@@ -22,7 +23,7 @@ export default class BuildingProfile extends Component {
       <Paper className="home-building-profile">
         {living_area_sqm &&
           mergeArray(living_area_sqm, price_sqm).map(apartment => (
-            <ApartmentProfile {...apartment} />
+            <ApartmentProfile {...apartment} key={uniqid()}/>
           ))}
       </Paper>
     );
