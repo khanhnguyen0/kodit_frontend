@@ -22,7 +22,7 @@ export class DefaultPage extends Component {
         <div>
           <SideBar>
             {this.props.home.clusterIds && (
-              <ClusterSelect clusterIds={this.props.home.clusterIds} />
+              <ClusterSelect clusterIds={this.props.home.clusterIds} fetchCluster={this.props.actions.fetchCluster}/>
             )}
           </SideBar>
           <MapComponent />

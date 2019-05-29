@@ -17,8 +17,8 @@ export default class ClusterSelect extends Component {
   static propTypes = {};
 
   handleChange(event) {
-    console.log(event.target.value)
-    return;
+    const clusterId =  event.target.value
+    this.props.fetchCluster(clusterId)
   }
 
   render() {
@@ -30,7 +30,7 @@ export default class ClusterSelect extends Component {
       <Select
         native
         value={state.age}
-        onChange={this.handleChange}
+        onChange={this.handleChange.bind(this)}
         inputProps={{
           name: 'age',
           id: 'age-native-simple',
