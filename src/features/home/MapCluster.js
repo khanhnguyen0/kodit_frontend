@@ -6,22 +6,25 @@ import BuildingPopover from './BuildingPopover';
 export default class MapCluster extends Component {
   static propTypes = {};
   state = {
-    anchorEl:null
-  }
+    anchorEl: null,
+    selectedApartment: {},
+  };
 
-  openPopover(event){
+  openPopover(marker, event) {
+    console.log(marker);
     this.setState({
-      anchorEl:event.currentTarget
-    })
+      anchorEl: event.currentTarget,
+      selectedApartment: marker,
+    });
   }
 
-  closePopover(){
-    this.setState({anchorEl:null})
+  closePopover() {
+    this.setState({ anchorEl: null, selectedApartment: {} });
   }
 
   render() {
-    const {anchorEl} = this.state
-    const open = Boolean(anchorEl)
+    const { anchorEl, selectedApartment } = this.state;
+    const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : null;
     return (
       <div>
@@ -29,15 +32,20 @@ export default class MapCluster extends Component {
           <Marker
             key={marker['Unnamed: 0']}
             longitude={marker.longitude}
-            latitude={ marker.latitude}
-            onclick={()=>{console.log("clicked")}}
+            latitude={marker.latitude}
           >
-          <div onClick={this.openPopover.bind(this)}>
-          <MarkerIcon />
-          </div>
+            <div onClick={this.openPopover.bind(this, marker)}>
+              <MarkerIcon />
+            </div>
           </Marker>
         ))}
-        <BuildingPopover open={open} id={id} anchorEl={anchorEl} handleClose={this.closePopover.bind(this)}/>
+        <BuildingPopover
+          open={open}
+          id={id}
+          anchorEl={anchorEl}
+          handleClose={this.closePopover.bind(this)}
+          selectedApartment={selectedApartment}
+        />
       </div>
     );
   }
