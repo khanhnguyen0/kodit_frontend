@@ -15,7 +15,7 @@ export default class BuildingPopover extends Component {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'top',
+          vertical: 'bottom',
           horizontal: 'center',
         }}
         transformOrigin={{
