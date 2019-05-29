@@ -9,7 +9,9 @@ import {
 } from '@data-ui/histogram';
 
 const ResponsiveHistogram = withParentSize(({ parentWidth, parentHeight, ...rest }) => (
-  <Histogram width={parentWidth} height={parentHeight} {...rest} />
+  <div style={{ height: '50%' }}>
+    <Histogram width={parentWidth} height={parentHeight} {...rest} />
+  </div>
 ));
 
 export default class PriceHistogram extends Component {
