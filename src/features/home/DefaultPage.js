@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import MapComponent from './MapComponent';
 import * as actions from './redux/actions';
 import SideBar from './SideBar';
+import ClusterSelect from './ClusterSelect';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -19,7 +20,11 @@ export class DefaultPage extends Component {
     return (
       <div className="home-default-page">
         <div>
-        <SideBar />
+          <SideBar>
+            {this.props.home.clusterIds && (
+              <ClusterSelect clusterIds={this.props.home.clusterIds} />
+            )}
+          </SideBar>
           <MapComponent />
         </div>
       </div>

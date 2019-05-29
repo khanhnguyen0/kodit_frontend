@@ -67,7 +67,7 @@ export function reducer(state, action) {
     case HOME_GET_CLUSTER_ID_SUCCESS:
       return {
         ...state,
-        ...action.data,
+        clusterIds:action.data.ids,
         getClusterIdPending: false,
         getClusterIdError: null,
       };
