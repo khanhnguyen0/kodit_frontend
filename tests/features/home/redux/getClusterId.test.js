@@ -2,20 +2,22 @@ import { delay } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import nock from 'nock';
 import { expect } from 'chai';
+import axios from 'axios';
 
 import {
   HOME_GET_CLUSTER_ID_BEGIN,
   HOME_GET_CLUSTER_ID_SUCCESS,
   HOME_GET_CLUSTER_ID_FAILURE,
   HOME_GET_CLUSTER_ID_DISMISS_ERROR,
-} from 'src/features/home/redux/constants';
+  API
+} from '../../../../src/features/home/redux/constants';
 
 import {
   getClusterId,
   dismissGetClusterIdError,
   doGetClusterId,
   reducer,
-} from 'src/features/home/redux/getClusterId';
+} from '../../../../src/features/home/redux/getClusterId';
 
 describe('home/redux/getClusterId', () => {
   afterEach(() => {
@@ -34,13 +36,13 @@ describe('home/redux/getClusterId', () => {
   // saga tests
   const generator = doGetClusterId();
 
-  it('calls delay when receives a begin action', () => {
+  it('calls axios when receives a begin action', () => {
     // Delay is just a sample, this should be replaced by real sync request.
-    expect(generator.next().value).to.deep.equal(call(delay, 20));
+    expect(generator.next().value).to.deep.equal(call(axios, `${API}/cluster/ids/`));
   });
 
   it('dispatches HOME_GET_CLUSTER_ID_SUCCESS action when succeeded', () => {
-    expect(generator.next('something').value).to.deep.equal(put({
+    expect(generator.next({data: 'something'}).value).to.deep.equal(put({
       type: HOME_GET_CLUSTER_ID_SUCCESS,
       data: 'something',
     }));

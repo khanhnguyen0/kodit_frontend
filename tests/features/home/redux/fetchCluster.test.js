@@ -1,6 +1,7 @@
 import { delay } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import nock from 'nock';
+import axios from 'axios';
 import { expect } from 'chai';
 
 import {
@@ -8,14 +9,15 @@ import {
   HOME_FETCH_CLUSTER_SUCCESS,
   HOME_FETCH_CLUSTER_FAILURE,
   HOME_FETCH_CLUSTER_DISMISS_ERROR,
-} from 'src/features/home/redux/constants';
+  API,
+} from '../../../../src/features/home/redux/constants';
 
 import {
   fetchCluster,
   dismissFetchClusterError,
   doFetchCluster,
   reducer,
-} from 'src/features/home/redux/fetchCluster';
+} from '../../../../src/features/home/redux/fetchCluster';
 
 describe('home/redux/fetchCluster', () => {
   afterEach(() => {
@@ -32,28 +34,32 @@ describe('home/redux/fetchCluster', () => {
   });
 
   // saga tests
-  const generator = doFetchCluster();
+  const generator = doFetchCluster({ clusterId: '' });
 
-  it('calls delay when receives a begin action', () => {
+  it('calls axios when receives a begin action', () => {
     // Delay is just a sample, this should be replaced by real sync request.
-    expect(generator.next().value).to.deep.equal(call(delay, 20));
+    expect(generator.next().value).to.deep.equal(call(axios, `${API}/cluster/`));
   });
 
   it('dispatches HOME_FETCH_CLUSTER_SUCCESS action when succeeded', () => {
-    expect(generator.next('something').value).to.deep.equal(put({
-      type: HOME_FETCH_CLUSTER_SUCCESS,
-      data: 'something',
-    }));
+    expect(generator.next({ data: 'something' }).value).to.deep.equal(
+      put({
+        type: HOME_FETCH_CLUSTER_SUCCESS,
+        data: 'something',
+      }),
+    );
   });
 
   it('dispatches HOME_FETCH_CLUSTER_FAILURE action when failed', () => {
-    const generatorForError = doFetchCluster();
+    const generatorForError = doFetchCluster({ clusterId: '' });
     generatorForError.next(); // call delay(20)
     const err = new Error('errored');
-    expect(generatorForError.throw(err).value).to.deep.equal(put({
-      type: HOME_FETCH_CLUSTER_FAILURE,
-      data: { error: err },
-    }));
+    expect(generatorForError.throw(err).value).to.deep.equal(
+      put({
+        type: HOME_FETCH_CLUSTER_FAILURE,
+        data: { error: err },
+      }),
+    );
   });
 
   it('returns done when finished', () => {
@@ -63,30 +69,24 @@ describe('home/redux/fetchCluster', () => {
   // reducer tests
   it('handles action type HOME_FETCH_CLUSTER_BEGIN correctly', () => {
     const prevState = { fetchClusterPending: false };
-    const state = reducer(
-      prevState,
-      { type: HOME_FETCH_CLUSTER_BEGIN }
-    );
+    const state = reducer(prevState, { type: HOME_FETCH_CLUSTER_BEGIN });
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.fetchClusterPending).to.be.true;
   });
 
   it('handles action type HOME_FETCH_CLUSTER_SUCCESS correctly', () => {
     const prevState = { fetchClusterPending: true };
-    const state = reducer(
-      prevState,
-      { type: HOME_FETCH_CLUSTER_SUCCESS, data: {} }
-    );
+    const state = reducer(prevState, { type: HOME_FETCH_CLUSTER_SUCCESS, data: {} });
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.fetchClusterPending).to.be.false;
   });
 
   it('handles action type HOME_FETCH_CLUSTER_FAILURE correctly', () => {
     const prevState = { fetchClusterPending: true };
-    const state = reducer(
-      prevState,
-      { type: HOME_FETCH_CLUSTER_FAILURE, data: { error: new Error('some error') } }
-    );
+    const state = reducer(prevState, {
+      type: HOME_FETCH_CLUSTER_FAILURE,
+      data: { error: new Error('some error') },
+    });
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.fetchClusterPending).to.be.false;
     expect(state.fetchClusterError).to.exist;
@@ -94,10 +94,7 @@ describe('home/redux/fetchCluster', () => {
 
   it('handles action type HOME_FETCH_CLUSTER_DISMISS_ERROR correctly', () => {
     const prevState = { fetchClusterError: new Error('some error') };
-    const state = reducer(
-      prevState,
-      { type: HOME_FETCH_CLUSTER_DISMISS_ERROR }
-    );
+    const state = reducer(prevState, { type: HOME_FETCH_CLUSTER_DISMISS_ERROR });
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.fetchClusterError).to.be.null;
   });

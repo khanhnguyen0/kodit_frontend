@@ -1,5 +1,11 @@
 'use strict';
-
+window.matchMedia = window.matchMedia || function () {
+return {
+matches: false,
+addListener: function () {},
+removeListener: function () {}
+};
+};
 if (typeof Promise === 'undefined') {
   // Rejection tracking prevents a common issue where React gets into an
   // inconsistent state due to an error, but it gets swallowed by a Promise,

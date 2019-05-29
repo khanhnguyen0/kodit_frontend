@@ -26,7 +26,7 @@ export default class MapCluster extends Component {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : null;
     return (
-      <div>
+      <div className="home-map-cluster">
         {this.props.clusters.map(marker => (
           <Marker
             key={marker['Unnamed: 0']}

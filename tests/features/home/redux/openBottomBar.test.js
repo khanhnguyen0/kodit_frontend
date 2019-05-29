@@ -13,7 +13,7 @@ describe('home/redux/openBottomBar', () => {
   });
 
   it('handles action type HOME_OPEN_BOTTOM_BAR correctly', () => {
-    const prevState = {};
+    const prevState = {displayBottomBar: false};
     const state = reducer(
       prevState,
       { type: HOME_OPEN_BOTTOM_BAR }
@@ -22,7 +22,7 @@ describe('home/redux/openBottomBar', () => {
     expect(state).not.toBe(prevState);
 
     // TODO: use real case expected value instead of {}.
-    const expectedState = {};
+    const expectedState = {displayBottomBar: true};
     expect(state).toEqual(expectedState);
   });
 });

@@ -5,7 +5,7 @@ import {
   HOME_GET_CLUSTER_ID_SUCCESS,
   HOME_GET_CLUSTER_ID_FAILURE,
   HOME_GET_CLUSTER_ID_DISMISS_ERROR,
-  API
+  API,
 } from './constants';
 import axios from 'axios';
 
@@ -67,7 +67,7 @@ export function reducer(state, action) {
     case HOME_GET_CLUSTER_ID_SUCCESS:
       return {
         ...state,
-        clusterIds:action.data.ids,
+        clusterIds: action.data.ids,
         getClusterIdPending: false,
         getClusterIdError: null,
       };

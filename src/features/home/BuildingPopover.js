@@ -10,6 +10,7 @@ export default class BuildingPopover extends Component {
     const { id, open, anchorEl, handleClose, selectedApartment } = this.props;
     return (
       <Popover
+        className="home-building-popover"
         id={id}
         open={open}
         anchorEl={anchorEl}

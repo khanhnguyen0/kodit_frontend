@@ -16,6 +16,7 @@ export default class MapComponent extends Component {
 
   render() {
     return (
+      <div className="home-map-component">
       <ReactMapGL
         width="100%"
         height={900}
@@ -25,6 +26,7 @@ export default class MapComponent extends Component {
       >
         {this.props.children}
       </ReactMapGL>
+      </div>
     );
   }
 }
