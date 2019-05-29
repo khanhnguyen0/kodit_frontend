@@ -6,7 +6,7 @@ export default class MapComponent extends Component {
     viewport: {
       latitude: 60.59,
       longitude: 25.13,
-      zoom: 10,
+      zoom: 12,
     },
   };
   onViewportChange = viewport => {

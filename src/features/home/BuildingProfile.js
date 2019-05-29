@@ -4,6 +4,10 @@ import ApartmentProfile from './ApartmentProfile';
 import Slider from 'react-slick';
 import uniqid from 'uniqid';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+
+
+const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
 
 const mergeArray = (living_area_sqm, price_sqm) => {
   let mergedArray = [];
@@ -31,6 +35,11 @@ export default class BuildingProfile extends Component {
     const { cluster, living_area_sqm, price_sqm, price } = this.props;
     return (
       <div className="home-building-profile">
+       {price_sqm && price_sqm.length>1 && (
+          <Typography variant="h6" gutterBottom>
+            {`${Math.round(average(price_sqm))} €/m² average`}
+          </Typography>
+        )}
         {living_area_sqm && (
           <Typography variant="caption" display="block" gutterBottom>
             {`${living_area_sqm.length} ${
@@ -38,6 +47,7 @@ export default class BuildingProfile extends Component {
             } available:`}
           </Typography>
         )}
+        <Divider />
         <Slider {...settings}>
           {living_area_sqm &&
             mergeArray(living_area_sqm, price_sqm).map(apartment => (
