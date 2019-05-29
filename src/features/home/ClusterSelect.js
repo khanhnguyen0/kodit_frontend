@@ -26,7 +26,7 @@ export default class ClusterSelect extends Component {
     const { state } = this;
     return (
       <FormControl className="cluster-select-form-control">
-      <InputLabel htmlFor="age-native-simple">Age</InputLabel>
+      <InputLabel htmlFor="age-native-simple">Postcodes</InputLabel>
       <Select
         native
         value={state.age}
