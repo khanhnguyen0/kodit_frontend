@@ -5,3 +5,4 @@ export { default as SideBar } from './SideBar';
 export { default as ClusterSelect } from './ClusterSelect';
 export { default as MapCluster } from './MapCluster';
 export { default as BuildingPopover } from './BuildingPopover';
+export { default as BuildingProfile } from './BuildingProfile';
