@@ -11,20 +11,24 @@ import BottomBar from './BottomBar';
 import PriceHistogram from './PriceHistogram';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import IconButton from '@material-ui/core/IconButton';
+import DataSourceSelect from './DataSourceSelect';
 
 export class DefaultPage extends Component {
   static propTypes = {
     home: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
+  state={
+    displayData:"price"
+  }
 
   componentDidMount() {
     this.props.actions.getClusterId();
   }
 
   render() {
-    const { clusterIds, clusters, displayBottomBar } = this.props.home;
-    const { closeBottomBar } = this.props.actions;
+    const { clusterIds, clusters, displayBottomBar, displayData } = this.props.home;
+    const { closeBottomBar, selectDisplayData } = this.props.actions;
     return (
       <div className="home-default-page">
         <div>
@@ -46,7 +50,8 @@ export class DefaultPage extends Component {
               >
                 <NavigationIcon fontSize="inherit" />
               </IconButton>
-              <PriceHistogram clusters={clusters} />
+              <DataSourceSelect displayData={displayData} selectDisplayData={selectDisplayData}/>
+              <PriceHistogram clusters={clusters} displayData={displayData}/>
             </BottomBar>
           )}
           <MapComponent>{clusters && <MapCluster clusters={clusters} />}</MapComponent>
