@@ -3,7 +3,8 @@ const initialState = {
   getClusterIdError: null,
   fetchClusterPending: false,
   fetchClusterError: null,
-  displayBottomBar: false
+  displayBottomBar: false,
+  displayData:"price"
 };
 
 export default initialState;

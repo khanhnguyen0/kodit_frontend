@@ -3,12 +3,14 @@ import { reducer as getClusterIdReducer } from './getClusterId';
 import { reducer as fetchClusterReducer } from './fetchCluster';
 import { reducer as openBottomBarReducer } from './openBottomBar';
 import { reducer as closeBottomBarReducer } from './closeBottomBar';
+import { reducer as selectDisplayDataReducer } from './selectDisplayData';
 
 const reducers = [
   getClusterIdReducer,
   fetchClusterReducer,
   openBottomBarReducer,
   closeBottomBarReducer,
+  selectDisplayDataReducer,
 ];
 
 export default function reducer(state = initialState, action) {
