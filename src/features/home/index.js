@@ -9,3 +9,4 @@ export { default as BuildingProfile } from './BuildingProfile';
 export { default as ApartmentProfile } from './ApartmentProfile';
 export { default as BottomBar } from './BottomBar';
 export { default as PriceHistogram } from './PriceHistogram';
+export { default as DataSourceSelect } from './DataSourceSelect';
