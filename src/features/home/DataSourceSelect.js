@@ -10,7 +10,7 @@ export default class DataSourceSelect extends Component {
     const { dataSource, selectDisplayData } = this.props;
     const options = DATA_SOURCE.map(({ label, value }) => <option value={value} key={value}>{label}</option>);
     return (
-      <FormControl className="cluster-select-form-control">
+      <FormControl className="home-data-source-select">
         <InputLabel htmlFor="age-native-simple">Select data point</InputLabel>
         <Select
           native
