@@ -18,8 +18,8 @@ export default class PriceHistogram extends Component {
   static propTypes = {};
 
   render() {
-    const { clusters } = this.props;
-    const prices = clusters.map(c => c.price);
+    const { clusters, displayData } = this.props;
+    const prices = clusters.map(c => c[displayData]);
     return (
       <ResponsiveHistogram
         className="home-price-histogram"
@@ -45,7 +45,7 @@ export default class PriceHistogram extends Component {
             </div>
             <div>
               <strong>density </strong>
-              {datum.density}
+              {datum.density.toFixed(2)}
             </div>
           </div>
         )}
